@@ -12,6 +12,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @Entity
 @Table(name = "sample")
 public class Validations {
+
 	    
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -28,6 +29,8 @@ public class Validations {
 	@Pattern(regexp = "^\\d{10}$")
 	private String mobile;
 	private String std_code;
+	
+	//getters and setters
 	public int getC_id() {
 		return C_id;
 	}
@@ -85,7 +88,7 @@ public class Validations {
 
 	public Validations(int c_id, @Pattern(regexp = "^[A-Z]{5}[0-9]{4}[A-Z]{1}$") String pAN,
 			@Pattern(regexp = "^([L|U]{1})([0-9]{5})([A-Za-z]{2})([0-9]{4})([A-Za-z]{3})([0-9]{6})$") String cIN,
-			@Pattern(regexp = "(0[1-9]|[12][0-9]|3[01])[/](0[1-9]|1[012])[/]\\d{4}") Date date,
+			Date date,
 			@Pattern(regexp = "^[0-9]{6}$") String pincode, String countrycode,
 			@Pattern(regexp = "^\\d{10}$") String mobile, String std_code) {
 		super();

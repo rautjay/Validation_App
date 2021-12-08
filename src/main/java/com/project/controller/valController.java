@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.project.Service.Com_service;
+
 import com.project.entity.Validations;
 import com.project.repo.ValRepositiory;
 
@@ -18,7 +18,10 @@ import com.project.repo.ValRepositiory;
 public class valController {
 	
 	@Autowired
-	private Com_service com_service;
+	private ValRepositiory valrepo;
+	
+	
+	
 	
 	@GetMapping
 	public String home() {
@@ -28,13 +31,14 @@ public class valController {
 	
 	@PostMapping( path = "/add")
 	public ResponseEntity<Validations>  Addvalues(@RequestBody Validations newval) throws Exception {
-		
-		
-		 Validations val  = com_service.Add_values(newval);
-		    if (val == null) {
+		 
+		valrepo.save(newval);
+		    
+		       
+		    if (newval == null) {
 		        throw new Exception();
 		    } else {
-		        return new ResponseEntity<>(val, HttpStatus.CREATED);
+		        return new ResponseEntity<>(newval, HttpStatus.CREATED);
 		    }
 		
 	}
